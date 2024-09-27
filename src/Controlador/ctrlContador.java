@@ -4,6 +4,7 @@ import Modelo.Contador;
 import Vista.frmContador;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import javax.swing.JOptionPane;
 
 
 
@@ -34,6 +35,44 @@ public class ctrlContador implements MouseListener{
     public void mouseClicked(MouseEvent e) {
   
          if(e.getSource() == Vista.btnGuardar){
+             boolean validacionesCorrectas = true;
+             
+             if(Vista.txtNombre.getText().isEmpty()||Vista.txtEdad.getText().isEmpty()||Vista.txtPeso.getText().isEmpty()||Vista.txtCorreo.getText().isEmpty()){
+                JOptionPane.showMessageDialog(Vista, "Llene los campos");
+                validacionesCorrectas = false;
+            }else {
+              try {
+                int edadNumerica = Integer.parseInt(Vista.txtEdad.getText());
+                if(edadNumerica > 100 || edadNumerica < 18){
+                    JOptionPane.showMessageDialog(Vista, "Ingrese una edad valida");
+                    validacionesCorrectas = false;
+                }
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(Vista, "Ingrese solo numeros");
+                validacionesCorrectas = false;
+            }
+             
+               if(!Vista.txtCorreo.getText().contains("@") || !Vista.txtCorreo.getText().contains(".com")){
+                JOptionPane.showMessageDialog(Vista, "Ingrese un correo valido");
+                validacionesCorrectas = false;
+            }
+                try {
+                int Peso = Integer.parseInt(Vista.txtPeso.getText());
+                if(Peso > 635 || Peso < 35){
+                    JOptionPane.showMessageDialog(Vista, "Ingrese un peso valido");
+                    validacionesCorrectas = false;
+                }
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(Vista, "Ingrese solo numeros");
+                validacionesCorrectas = false;
+            }
+               
+               
+               
+             }
+             
+             
+              if(validacionesCorrectas){
           Modelo.setNombre_Contador(Vista.txtNombre.getText());
           Modelo.setEdad_Contador(Integer.parseInt(Vista.txtEdad.getText()));
           Modelo.setPeso_Contador(Double.parseDouble( Vista.txtPeso.getText()));
@@ -41,6 +80,8 @@ public class ctrlContador implements MouseListener{
           
           Modelo.Guardar();
           Modelo.Mostrar(Vista.jtbContadores);
+          
+              }
          
       }
          
@@ -52,21 +93,58 @@ public class ctrlContador implements MouseListener{
       
             
         }
-               if (e.getSource() == Vista.btnActualizar) {
             
+            if(e.getSource() == Vista.btnActualizar){
+             boolean validacionesCorrectas = true;
+             
+             if(Vista.txtNombre.getText().isEmpty()||Vista.txtEdad.getText().isEmpty()||Vista.txtPeso.getText().isEmpty()||Vista.txtCorreo.getText().isEmpty()){
+                JOptionPane.showMessageDialog(Vista, "Llene los campos");
+                validacionesCorrectas = false;
+            }else {
+              try {
+                int edadNumerica = Integer.parseInt(Vista.txtEdad.getText());
+                if(edadNumerica > 100 || edadNumerica < 18){
+                    JOptionPane.showMessageDialog(Vista, "Ingrese una edad valida");
+                    validacionesCorrectas = false;
+                }
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(Vista, "Ingrese solo numeros");
+                validacionesCorrectas = false;
+            }
+             
+               if(!Vista.txtCorreo.getText().contains("@") || !Vista.txtCorreo.getText().contains(".com")){
+                JOptionPane.showMessageDialog(Vista, "Ingrese un correo valido");
+                validacionesCorrectas = false;
+            }
+                try {
+                int Peso = Integer.parseInt(Vista.txtPeso.getText());
+                if(Peso > 635 || Peso < 35){
+                    JOptionPane.showMessageDialog(Vista, "Ingrese un peso valido");
+                    validacionesCorrectas = false;
+                }
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(Vista, "Ingrese solo numeros");
+                validacionesCorrectas = false;
+            }
+               
+               
+               
+             }
+             
+             
+              if(validacionesCorrectas){
+          Modelo.setNombre_Contador(Vista.txtNombre.getText());
+          Modelo.setEdad_Contador(Integer.parseInt(Vista.txtEdad.getText()));
+          Modelo.setPeso_Contador(Double.parseDouble( Vista.txtPeso.getText()));
+          Modelo.setCorreo_Contador(Vista.txtCorreo.getText());
+          
+          Modelo.Actualizar(Vista.jtbContadores);
+          Modelo.Mostrar(Vista.jtbContadores);
+          
+              }
+         
+      }
             
-                    //Asignar lo de la vista al modelo al momento de darle clic a actualizar
-                    Modelo.setNombre_Contador(Vista.txtNombre.getText());
-                    Modelo.setEdad_Contador(Integer.parseInt(Vista.txtEdad.getText()));
-                    Modelo.setPeso_Contador(Double.parseDouble( Vista.txtPeso.getText()));
-                    Modelo.setCorreo_Contador(Vista.txtCorreo.getText());
-                    //Ejecutar el método    
-                    Modelo.Actualizar(Vista.jtbContadores);
-                    Modelo.Mostrar(Vista.jtbContadores);
-                    
-              
-            
-        }
                
                
                  if (e.getSource() == Vista.btnLimpiar) {
