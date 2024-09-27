@@ -57,7 +57,7 @@ public class ctrlContador implements MouseListener{
                 validacionesCorrectas = false;
             }
                 try {
-                int Peso = Integer.parseInt(Vista.txtPeso.getText());
+                Double Peso = Double.parseDouble(Vista.txtPeso.getText());
                 if(Peso > 635 || Peso < 35){
                     JOptionPane.showMessageDialog(Vista, "Ingrese un peso valido");
                     validacionesCorrectas = false;
@@ -117,7 +117,7 @@ public class ctrlContador implements MouseListener{
                 validacionesCorrectas = false;
             }
                 try {
-                int Peso = Integer.parseInt(Vista.txtPeso.getText());
+                Double Peso = Double.parseDouble(Vista.txtPeso.getText());
                 if(Peso > 635 || Peso < 35){
                     JOptionPane.showMessageDialog(Vista, "Ingrese un peso valido");
                     validacionesCorrectas = false;
